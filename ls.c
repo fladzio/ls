@@ -41,6 +41,7 @@ char *new_path(char *old_path, char *file_name)
 	return p;
 }
 
+// porownywanie daty dla funkcji -t
 int compare(const void *d1, const void *d2)
 {
 	long date1 = (long)((file_details *)d1)->time;
@@ -110,7 +111,7 @@ void get_permissions(file_details *file, struct stat *statbuf)
 
 void print_file(file_details *file, int details, int recursively, int time_sort, int human)
 {
-	if (file->name[0] == '.')
+	if (strcmp(file->name, ".") == 0 || strcmp(file->name, "..") == 0)
 		return;
 
 	if (details)

@@ -25,6 +25,7 @@ typedef struct
 	struct stat statbuf;
 } data;
 
+// doklejanie nazwy pliku/folderu do poprzedniej sciezki
 char *new_path(char *old_path, char *file_name)
 {
 	char *p = (char *)malloc(strlen(old_path) + strlen(file_name) + 2);
@@ -36,6 +37,7 @@ char *new_path(char *old_path, char *file_name)
 
 void list_dir(char *program, char *name, int details, int recursively, int time_sort, int human);
 
+// porownywanie daty dla funkcji -t
 int compare(const void *d1, const void *d2)
 {
 	long date1 = ((data *)d1)->statbuf.st_mtime;
@@ -43,6 +45,7 @@ int compare(const void *d1, const void *d2)
 	return date1 < date2;
 }
 
+// ilosc plikow w podanej sciezce
 long files_count(char *name)
 {
 	long count = 0;
@@ -114,6 +117,7 @@ void print_file(char *program, char *name, data *data, int details, int recursiv
 
 		get_permissions(&data->statbuf, perms);
 
+		// drzewko
 		if (recursively)
 		{
 			for (int i = 0; i <= tab; ++i)
