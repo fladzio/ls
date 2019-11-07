@@ -105,7 +105,7 @@ void get_permissions(struct stat *statbuf, char perms[])
 void print_file(char *program, char *name, data *data, int details, int recursively, int time_sort, int human)
 {
 	char perms[11]; // string od uprawnien
-	if (strcmp(data->dp->d_name, ".") == 0 || strcmp(data->dp->d_name, "..") == 0) 
+	if (strcmp(data->dp->d_name, ".") == 0 || strcmp(data->dp->d_name, "..") == 0)
 		return;
 	if (details)
 	{

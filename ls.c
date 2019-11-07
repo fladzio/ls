@@ -202,8 +202,8 @@ void list_dir(char *program, char *name, int details, int recursively, int time_
 		filelist[k].time = statbuf.st_mtime;
 
 		if (filelist[k].is_directory)
-			dir_count++; 
-			
+			dir_count++;
+
 		file_opened++;
 		free(new);
 	}
