@@ -105,7 +105,7 @@ void get_permissions(struct stat *statbuf, char perms[])
 void print_file(char *program, char *name, data *data, int details, int recursively, int time_sort, int human)
 {
 	char perms[11]; // string od uprawnien
-	if (data->dp->d_name[0] == '.')
+	if (strcmp(data->dp->d_name, ".") == 0 || strcmp(data->dp->d_name, "..") == 0) 
 		return;
 	if (details)
 	{
@@ -119,9 +119,9 @@ void print_file(char *program, char *name, data *data, int details, int recursiv
 			for (int i = 0; i <= tab; ++i)
 			{
 				if (i != tab)
-					printf("|   ");
+					printf("|  ");
 				else
-					printf("|-> ");
+					printf("|─ ");
 			}
 		}
 
@@ -185,7 +185,7 @@ void list_dir(char *program, char *name, int details, int recursively, int time_
 	while ((filelist[++i].dp = readdir(dir)) != NULL)
 	{
 		char *heh = new_path(name, filelist[i].dp->d_name);
-		if (filelist[i].dp->d_name[0] != '.')
+		if (strcmp(filelist[i].dp->d_name, ".") != 0 || strcmp(filelist[i].dp->d_name, "..") != 0)
 		{
 			if (stat(heh, &filelist[i].statbuf))
 			{
